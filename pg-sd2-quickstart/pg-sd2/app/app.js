@@ -1,11 +1,16 @@
 // Import express.js
 const express = require("express");
 
+
+
 // Create express app
 var app = express();
 
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 // Add static files location
-app.use(express.static("static"));
+app.use('/css', express.static('css'));
 
 // Get the functions in the db.js file to use
 const db = require('./services/db');
@@ -13,6 +18,11 @@ const db = require('./services/db');
 // Create a route for root - /
 app.get("/", function(req, res) {
     res.send("Roehampton Eats");
+});
+
+// Create a route for root - /
+app.get("/pugtest", function(req, res) {
+    res.render("article");
 });
 
 // Create a route for testing the db
@@ -23,6 +33,24 @@ app.get("/db_test", function(req, res) {
         console.log(results);
         res.send(results)
     });
+});
+
+app.get("/hotel_data", function(req,res)
+{
+    var sql = 'select * from Hotel_db';
+    var output = '<table border = "1">';
+    db.query(sql).then(results => {
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.name + '<td>';
+            output += '<td>' + row.address + '<td>';
+            output += '<td>' + row.review + '<td>';
+            output += '</tr>'
+        }
+        output += '</table>';
+        res.send(output);
+    });
+
 });
 
 // Create a route for /goodbye

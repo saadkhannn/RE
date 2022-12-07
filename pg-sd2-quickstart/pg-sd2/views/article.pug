@@ -1,0 +1,40 @@
+<!--extends layout -->
+<!--block content-->
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Roehampton Eats
+    link(rel='stylesheet' href='../css/style.css')
+body#body
+    nav#navbar
+        .logo
+            p Roehampton Eats
+        ul.navlist
+            li #[a(href="#") Home]
+            li #[a(href="#") Search Menu]
+            li #[a(href="#") Reserve a table]
+
+    section#restaurantForm5
+        form(action="#")
+        label(for="date") Select date and time: 
+        input(type="datetime-local")
+
+    label(for='people') Select Number of people:
+        select#people(name='people')
+            option(value='one') 1
+            option(value='two') 2
+            option(value='three') 3
+            option(value='four') 4
+            option(value='five') 5
+            option(value='six') 6
+            option(value='seven') 7
+            option(value='eight') 8
+            option(value='nine') 9
+            option(value='ten') 10
+            option(value='above_ten') more than 10 
+
+            input(type="button", value="lets go")
+
+input(onclick="location.href='/hotel_data'" type='button' value='click here to read reviews')
